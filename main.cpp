@@ -1,21 +1,30 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include "app.h"
+#include <QDateTime>
+#include <QStandardPaths>
+#include <QtDebug>
+#define LOGSIZE 12000000
+#define LOGFILENUM  10
+
 
 void customMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg);
 
 
 int main(int argc, char *argv[])
 {
+
   QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
   QGuiApplication app(argc, argv);
-   new App("amadou" ,"doumbia" , &app  ) ;
+  qInstallMessageHandler(customMessageHandler);
+  new App("amadou" ,"doumbia" , &app  ) ;
   return app.exec();
 }
 void customMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
     Q_UNUSED(context);
 
+  QString  logfile = "Mylogfileamadou";
     QString date = QDateTime::currentDateTime().toString("ddMMyy-hhmmss.zzz");
     QString qmlfilename(context.file );
     QRegExp qmlrx("[^\\\\\\\/]+\\.qml",Qt::CaseInsensitive);
@@ -49,7 +58,7 @@ void customMessageHandler(QtMsgType type, const QMessageLogContext &context, con
             abort();
             break;
     }
-
+ //   qDebug()<<"amd"<<QStandardPaths::writableLocation(QStandardPaths::DataLocation) + "/" + logfile ;
     QFile outFile(QStandardPaths::writableLocation(QStandardPaths::DataLocation) + "/" + logfile);
 
     if(outFile.size() > LOGSIZE) {
@@ -70,5 +79,5 @@ void customMessageHandler(QtMsgType type, const QMessageLogContext &context, con
         textStream<<txt<< endl;
 
 //    echo();
-    QTextStream(stderr) << txt << endl;
+    QTextStream(stderr) <<txt << endl;
 }
