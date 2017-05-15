@@ -36,7 +36,7 @@ public slots:
   QSize *demension() const;
   void setDemension(QSize *demension);
 
-  bool addContext(QString  a, QObject *b ) ;
+  void addContext(QString  a, QObject *b ) ;
 
 
 

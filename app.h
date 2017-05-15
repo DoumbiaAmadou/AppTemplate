@@ -14,9 +14,11 @@ class App : public QObject
 public:
   explicit App(QString Organisation,QString ApplicationName,QObject *parent = 0);
 
-  QString getApplicationName() const;
+  Q_INVOKABLE QString getApplicationName() const;
 
-  QString getOrganisationName() const;
+  Q_INVOKABLE QString getOrganisationName() const;
+
+  void setOrganisationName(const QString &OrganisationName);
 
 signals:
 
@@ -26,7 +28,7 @@ public slots:
 
 private:
 
- QString m_ApplicationName ;
+  QString m_ApplicationName ;
  QString m_OrganisationName ;
  AppViewer * m_Viewer ;
  AppCore * m_Core ;

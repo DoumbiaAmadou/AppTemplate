@@ -30,7 +30,7 @@ public slots:
 
 private :
   void initDb() ;
-  void loadDatabase() ;
+  void createDatabase() ;
   QSqlDatabase  m_Sql ;
   QFile m_dbfile ;
 

@@ -1,4 +1,6 @@
 #include "appviewer.h"
+#include <qqmlengine.h>
+#include <qqmlcontext.h>
 
 AppViewer::AppViewer(QObject *parent): QQmlApplicationEngine(parent)
 {
@@ -15,9 +17,10 @@ void AppViewer::setDemension(QSize *demension)
 
 }
 
-bool AppViewer::addContext(QString a, QObject * b )
+void AppViewer::addContext(QString a, QObject * b )
 {
-return true ;
+    rootContext()->setContextProperty(a , b ) ;
+
 }
 
 QSize *AppViewer::demension() const

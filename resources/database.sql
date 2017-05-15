@@ -10,3 +10,7 @@ CREATE TABLE utilisateur
     code_postal VARCHAR(5),
     nombre_achat INT
 );
+
+CREATE TABLE `dbVersion` ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+`version` varchar(20),
+`dateVersion` datetime )

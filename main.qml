@@ -6,32 +6,15 @@ ApplicationWindow {
     visible: true
     width: 640
     height: 480
-    title: qsTr("Hello World")
+    title: app.getApplicationName()
+    background:  Image {
+        id: name
+        source: "qrc:/PtTjEw.jpg"
+    }
+    Page1Form {
 
-    SwipeView {
-        id: swipeView
-        anchors.fill: parent
-        currentIndex: tabBar.currentIndex
-
-        Page1 {
-        }
-
-        Page {
-            Label {
-                text: "sequence.amadou"
-                anchors.centerIn: parent
-            }
-        }
     }
 
-    footer: TabBar {
-        id: tabBar
-        currentIndex: swipeView.currentIndex
-        TabButton {
-            text: qsTr("First")
-        }
-        TabButton {
-            text: qsTr("Second")
-        }
-    }
+
+
 }

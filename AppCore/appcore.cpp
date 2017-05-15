@@ -52,13 +52,15 @@ void AppCore::initializer()
 
     }
 
+  qDebug()<<" dbile" <<m_setting->value("DBFILE").toString();
+
     m_dbfile.setFileName(m_setting->value("DBFILE").toString());
     m_Sql.setDatabaseName(m_setting->value("DBFILE").toString());
 
     if(!m_dbfile.exists())
       initDb();
     else
-      loadDatabase();
+      createDatabase();
 
 
 }
@@ -75,11 +77,11 @@ void AppCore::initDb() {
   m_dbfile.setPermissions(QFile::ExeGroup | QFile::ExeOther | QFile::ExeOther |
                           QFile::ExeUser |QFile::WriteOwner|QFile::WriteGroup
                           |QFile::WriteOther);
-  loadDatabase();
+  createDatabase();
 }
 
-void AppCore::loadDatabase() {
-  qDebug()<<"load";
+void AppCore::createDatabase() {
+  qDebug()<<"create";
 
   if(m_Sql.open())
     {
